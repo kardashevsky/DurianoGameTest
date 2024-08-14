@@ -7,7 +7,7 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=360 height=640 style="width: 360px; height: 640px; background: #231F20"></canvas>
-    <script src="Build/build2.loader.js"></script>
+    <script src="Build/app.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -25,9 +25,9 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/build2.data",
-        frameworkUrl: "Build/build2.framework.js",
-        codeUrl: "Build/build2.wasm",
+        dataUrl: "Build/app.data",
+        frameworkUrl: "Build/app.framework.js",
+        codeUrl: "Build/app.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "duriano",
