@@ -35,11 +35,25 @@
     </div>
 
     <script>
+        // Функция для отладки, если initData недоступен
+        function getTestInitData() {
+            return {
+                user: {
+                    id: 12345678,
+                    first_name: "John",
+                    last_name: "Doe",
+                    username: "johndoe"
+                },
+                auth_date: 1609459200,
+                hash: "testhash"
+            };
+        }
+
         // Убедимся, что WebApp готов к использованию
         Telegram.WebApp.ready();
 
-        // Получаем данные initData из Telegram WebApp
-        const initData = Telegram.WebApp.initData || "InitData недоступен";
+        // Проверяем, доступен ли Telegram.WebApp.initData
+        const initData = Telegram.WebApp.initData || getTestInitData();
 
         // Преобразуем объект в строку для вывода
         const initDataString = JSON.stringify(initData, null, 2);
@@ -47,8 +61,12 @@
         // Выводим данные на экран
         document.getElementById('output').textContent = initDataString;
 
-        // Для отладки можно вывести статус
-        document.getElementById('status').textContent = 'Данные успешно загружены!';
+        // Если используется заглушка, обновим статус
+        if (initData === getTestInitData()) {
+            document.getElementById('status').textContent = 'Используются тестовые данные';
+        } else {
+            document.getElementById('status').textContent = 'Данные успешно загружены!';
+        }
     </script>
 </body>
 </html>
