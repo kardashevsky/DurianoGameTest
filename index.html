@@ -31,59 +31,43 @@
         <h1>Telegram WebApp JSON Data</h1>
         <p>Ниже показан JSON, собранный через Telegram WebApp API:</p>
         <pre id="output"></pre>
-        <p id="status"></p> <!-- Для вывода статуса -->
     </div>
 
     <script>
-        function fetchTelegramData() {
-            // Проверяем, инициализирован ли Telegram WebApp API
-            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
-                document.getElementById('status').textContent = "Telegram WebApp API доступен";
-
-                // Сбор данных из Telegram WebApp
-                const query_id = Telegram.WebApp.initData || "query_id отсутствует";
-                const user = Telegram.WebApp.initDataUnsafe.user || "user отсутствует";
-                const auth_date = Telegram.WebApp.initDataUnsafe.auth_date || "auth_date отсутствует";
-                const hash = Telegram.WebApp.initDataUnsafe.hash || "hash отсутствует";
-                const tgWebAppVersion = Telegram.WebApp.version || "Версия отсутствует";
-                const tgWebAppPlatform = Telegram.WebApp.platform || "Платформа отсутствует";
-                const tgWebAppThemeParams = Telegram.WebApp.themeParams || {};
-
-                // Создаём объект JSON с данными
-                const telegramData = {
-                    query_id: query_id,
-                    user: user,
-                    auth_date: auth_date,
-                    hash: hash,
-                    tgWebAppVersion: tgWebAppVersion,
-                    tgWebAppPlatform: tgWebAppPlatform,
-                    tgWebAppThemeParams: {
-                        accent_text_color: tgWebAppThemeParams.accent_text_color || "#626aee",
-                        subtitle_text_color: tgWebAppThemeParams.subtitle_text_color || "#b1c3d5",
-                        header_bg_color: tgWebAppThemeParams.header_bg_color || "#191926",
-                        hint_color: tgWebAppThemeParams.hint_color || "#b1c3d5",
-                        link_color: tgWebAppThemeParams.link_color || "#626aee",
-                        button_color: tgWebAppThemeParams.button_color || "#626aee",
-                        secondary_bg_color: tgWebAppThemeParams.secondary_bg_color || "#191926",
-                        section_header_text_color: tgWebAppThemeParams.section_header_text_color || "#b1c3d5",
-                        bg_color: tgWebAppThemeParams.bg_color || "#27273b",
-                        button_text_color: tgWebAppThemeParams.button_text_color || "#ffffff",
-                        section_bg_color: tgWebAppThemeParams.section_bg_color || "#27273b",
-                        text_color: tgWebAppThemeParams.text_color || "#ffffff"
-                    }
-                };
-
-                // Выводим данные на страницу
-                document.getElementById('output').textContent = JSON.stringify(telegramData, null, 2);
-            } else {
-                document.getElementById('status').textContent = 'Telegram WebApp API не найдено! Откройте через Telegram WebApp.';
+        let initData = window.Telegram.WebApp.initData;
+        // Создаём объект JSON с данными
+        const telegramData = {
+            query_id: "AAGLcLfAAAAXWvtx-m3Kqb",
+            user: {
+                id: 532115621,
+                first_name: "Без",
+                last_name: "Дома",
+                username: "bez_domnyi",
+                language_code: "ru",
+                allows_write_to_pm: true
+            },
+            auth_date: 1725089569,
+            hash: "c021368206c440921c991b5133e5fce1c9be4d2913c01c887ad7b5b",
+            tgWebAppVersion: "7.8",
+            tgWebAppPlatform: "macos",
+            tgWebAppThemeParams: {
+                accent_text_color: "#626aee",
+                subtitle_text_color: "#b1c3d5",
+                header_bg_color: "#191926",
+                hint_color: "#b1c3d5",
+                link_color: "#626aee",
+                button_color: "#626aee",
+                secondary_bg_color: "#191926",
+                section_header_text_color: "#b1c3d5",
+                bg_color: "#27273b",
+                button_text_color: "#ffffff",
+                section_bg_color: "#27273b",
+                text_color: "#ffffff"
             }
-        }
-
-        // Вызов функции при загрузке страницы
-        window.onload = function() {
-            fetchTelegramData();
         };
+
+        // Выводим данные на страницу
+        document.getElementById('output').textContent = JSON.stringify(initData, null, 2);
     </script>
 </body>
 </html>
