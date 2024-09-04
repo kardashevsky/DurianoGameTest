@@ -35,8 +35,11 @@
     </div>
 
     <script>
+        // Убедимся, что WebApp готов к использованию
+        Telegram.WebApp.ready();
+
         // Получаем данные initData из Telegram WebApp
-        const initData = Telegram.WebApp.initData;
+        const initData = Telegram.WebApp.initData || "InitData недоступен";
 
         // Преобразуем объект в строку для вывода
         const initDataString = JSON.stringify(initData, null, 2);
