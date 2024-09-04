@@ -42,20 +42,20 @@
                 document.getElementById('status').textContent = "Telegram WebApp API доступен";
 
                 // Сбор данных из Telegram WebApp
-                let initData = Telegram.WebApp.initData;
-                let user = Telegram.WebApp.user;
-                let platform = Telegram.WebApp.platform;
-                let version = Telegram.WebApp.version;
-                let isExpanded = Telegram.WebApp.isExpanded;
-                let themeParams = Telegram.WebApp.themeParams;
-                let colorScheme = Telegram.WebApp.colorScheme;
-                let isIframe = Telegram.WebApp.isIframe;
-                let viewportHeight = Telegram.WebApp.viewportHeight;
-                let viewportStableHeight = Telegram.WebApp.viewportStableHeight;
-                let headerColor = Telegram.WebApp.headerColor;
-                let backgroundColor = Telegram.WebApp.backgroundColor;
-                let authDate = Telegram.WebApp.authDate;
-                let hash = Telegram.WebApp.hash;
+                let initData = Telegram.WebApp.initData || "initData отсутствует";
+                let user = Telegram.WebApp.user || "user отсутствует";
+                let platform = Telegram.WebApp.platform || "platform отсутствует";
+                let version = Telegram.WebApp.version || "version отсутствует";
+                let isExpanded = Telegram.WebApp.isExpanded || "isExpanded отсутствует";
+                let themeParams = Telegram.WebApp.themeParams || "themeParams отсутствуют";
+                let colorScheme = Telegram.WebApp.colorScheme || "colorScheme отсутствует";
+                let isIframe = Telegram.WebApp.isIframe || "isIframe отсутствует";
+                let viewportHeight = Telegram.WebApp.viewportHeight || "viewportHeight отсутствует";
+                let viewportStableHeight = Telegram.WebApp.viewportStableHeight || "viewportStableHeight отсутствует";
+                let headerColor = Telegram.WebApp.headerColor || "headerColor отсутствует";
+                let backgroundColor = Telegram.WebApp.backgroundColor || "backgroundColor отсутствует";
+                let authDate = Telegram.WebApp.authDate || "authDate отсутствует";
+                let hash = Telegram.WebApp.hash || "hash отсутствует";
 
                 // Собираем все данные в объект
                 let fullData = {
