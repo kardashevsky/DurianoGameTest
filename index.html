@@ -29,13 +29,16 @@
 <body>
     <div class="container">
         <h1>Telegram WebApp Init Data</h1>
-        <p>Здесь будет показана информация о WebApp Init Data:</p>
-        <pre id="output"></pre>
+        <p>ЫДВАОЛДвфыОАДЖЛВЫОАЛДЫВОАЛДЖВОАЫЛДЖВОАД:</p>
+        <h2>Реальные данные:</h2>
+        <pre id="realData"></pre>
+        <h2>Тестовые данные:</h2>
+        <pre id="testData"></pre>
         <p id="status"></p> <!-- Вывод статуса для отладки -->
     </div>
 
     <script>
-        // Функция для отладки, если initData недоступен
+        // Функция для тестовых данных
         function getTestInitData() {
             return {
                 user: {
@@ -52,21 +55,26 @@
         // Убедимся, что WebApp готов к использованию
         Telegram.WebApp.ready();
 
-        // Проверяем, доступен ли Telegram.WebApp.initData
-        const initData = Telegram.WebApp.initData || getTestInitData();
+        // Получаем реальные данные initData из Telegram WebApp
+        const realInitData = Telegram.WebApp.initData || "InitData недоступен";
 
-        // Преобразуем объект в строку для вывода
-        const initDataString = JSON.stringify(initData, null, 2);
+        // Получаем тестовые данные
+        const testInitData = getTestInitData();
 
-        // Выводим данные на экран
-        document.getElementById('output').textContent = initDataString;
+        // Преобразуем реальные данные в строку для вывода
+        const realDataString = JSON.stringify(realInitData, null, 2);
 
-        // Если используется заглушка, обновим статус
-        if (initData === getTestInitData()) {
-            document.getElementById('status').textContent = 'Используются тестовые данные';
-        } else {
-            document.getElementById('status').textContent = 'Данные успешно загружены!';
-        }
+        // Преобразуем тестовые данные в строку для вывода
+        const testDataString = JSON.stringify(testInitData, null, 2);
+
+        // Выводим реальные данные на экран
+        document.getElementById('realData').textContent = realDataString;
+
+        // Выводим тестовые данные на экран
+        document.getElementById('testData').textContent = testDataString;
+
+        // Вывод статуса
+        document.getElementById('status').textContent = 'Показаны как реальные данные, так и тестовые данные';
     </script>
 </body>
 </html>
