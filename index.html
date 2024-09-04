@@ -49,30 +49,16 @@
                 let isExpanded = Telegram.WebApp.isExpanded || "isExpanded отсутствует";
                 let themeParams = Telegram.WebApp.themeParams || "themeParams отсутствуют";
                 let colorScheme = Telegram.WebApp.colorScheme || "colorScheme отсутствует";
-                let isIframe = Telegram.WebApp.isIframe || "isIframe отсутствует";
-                let viewportHeight = Telegram.WebApp.viewportHeight || "viewportHeight отсутствует";
-                let viewportStableHeight = Telegram.WebApp.viewportStableHeight || "viewportStableHeight отсутствует";
-                let headerColor = Telegram.WebApp.headerColor || "headerColor отсутствует";
-                let backgroundColor = Telegram.WebApp.backgroundColor || "backgroundColor отсутствует";
-                let authDate = Telegram.WebApp.authDate || "authDate отсутствует";
-                let hash = Telegram.WebApp.hash || "hash отсутствует";
 
-                // Собираем все данные в объект
+                // Добавляем данные, которые вы хотите передать
                 let fullData = {
-                    initData,
+                    query_id: initData,
                     user,
-                    platform,
-                    version,
-                    isExpanded,
-                    themeParams,
-                    colorScheme,
-                    isIframe,
-                    viewportHeight,
-                    viewportStableHeight,
-                    headerColor,
-                    backgroundColor,
-                    authDate,
-                    hash
+                    auth_date: Telegram.WebApp.authDate || "authDate отсутствует",
+                    hash: Telegram.WebApp.hash || "hash отсутствует",
+                    tgWebAppVersion: version,
+                    tgWebAppPlatform: platform,
+                    tgWebAppThemeParams: themeParams
                 };
 
                 // Вывод данных на страницу
