@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram WebApp JSON Test</title>
+    <title>Telegram WebApp initData Test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,46 +28,30 @@
 </head>
 <body>
     <div class="container">
-        <h1>Telegram WebApp JSON Data</h1>
-        <p>Ниже показан JSON, собранный через Telegram WebApp API:</p>
+        <h1>Telegram WebApp initData</h1>
+        <p>Зашифрованные данные, переданные через Telegram WebApp API:</p>
         <pre id="output"></pre>
+        <p id="status"></p> <!-- Для отладки -->
     </div>
 
     <script>
-        let initData = window.Telegram.WebApp.initData;
-        // Создаём объект JSON с данными
-        const telegramData = {
-            query_id: "AAGLcLfAAAAXWvtx-m3Kqb",
-            user: {
-                id: 532115621,
-                first_name: "Без",
-                last_name: "Дома",
-                username: "bez_domnyi",
-                language_code: "ru",
-                allows_write_to_pm: true
-            },
-            auth_date: 1725089569,
-            hash: "c021368206c440921c991b5133e5fce1c9be4d2913c01c887ad7b5b",
-            tgWebAppVersion: "7.8",
-            tgWebAppPlatform: "macos",
-            tgWebAppThemeParams: {
-                accent_text_color: "#626aee",
-                subtitle_text_color: "#b1c3d5",
-                header_bg_color: "#191926",
-                hint_color: "#b1c3d5",
-                link_color: "#626aee",
-                button_color: "#626aee",
-                secondary_bg_color: "#191926",
-                section_header_text_color: "#b1c3d5",
-                bg_color: "#27273b",
-                button_text_color: "#ffffff",
-                section_bg_color: "#27273b",
-                text_color: "#ffffff"
-            }
-        };
+        function fetchTelegramInitData() {
+            // Проверяем доступность Telegram WebApp API
+            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+                document.getElementById('status').textContent = "Telegram WebApp API доступен";
 
-        // Выводим данные на страницу
-        document.getElementById('output').textContent = JSON.stringify(initData, null, 2);
+                // Получаем зашифрованную строку initData
+                let initData = Telegram.WebApp.initData;
+
+                // Выводим initData на страницу
+                document.getElementById('output').textContent = initData;
+            } else {
+                document.getElementById('status').textContent = 'Telegram WebApp API не найдено!';
+            }
+        }
+
+        // Вызов функции при загрузке страницы
+        window.onload = fetchTelegramInitData;
     </script>
 </body>
 </html>
