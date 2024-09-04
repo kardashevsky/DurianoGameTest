@@ -35,23 +35,17 @@
     </div>
 
     <script>
-        function fetchTelegramInitData() {
-            // Проверяем доступность Telegram WebApp API
-            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
-                document.getElementById('status').textContent = "Telegram WebApp API доступен";
+        // Получаем данные initData из Telegram WebApp
+        const initData = Telegram.WebApp.initData;
 
-                // Получаем данные из initDataUnsafe
-                const initDataUnsafe = Telegram.WebApp.initData;
-                
-                // Выводим данные initDataUnsafe на страницу
-                document.getElementById('output').textContent = JSON.stringify(initDataUnsafe, null, 2);
-            } else {
-                document.getElementById('status').textContent = 'Telegram WebApp API не найдено!';
-            }
-        }
+        // Преобразуем объект в строку для вывода
+        const initDataString = JSON.stringify(initData, null, 2);
 
-        // Вызов функции при загрузке страницы
-        window.onload = fetchTelegramInitData;
+        // Выводим данные на экран
+        document.getElementById('output').textContent = initDataString;
+
+        // Для отладки можно вывести статус
+        document.getElementById('status').textContent = 'Данные успешно загружены!';
     </script>
 </body>
 </html>
