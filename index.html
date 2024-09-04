@@ -31,53 +31,7 @@
         <pre id="output"></pre>
     </div>
 
-    <script>
-        function fetchTelegramData() {
-            // Проверка, есть ли Telegram WebApp API
-            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
-                // Сбор данных из Telegram WebApp
-                let initData = Telegram.WebApp.initData;
-                let user = Telegram.WebApp.user;
-                let platform = Telegram.WebApp.platform;
-                let version = Telegram.WebApp.version;
-                let isExpanded = Telegram.WebApp.isExpanded;
-                let themeParams = Telegram.WebApp.themeParams;
-                let colorScheme = Telegram.WebApp.colorScheme;
-                let isIframe = Telegram.WebApp.isIframe;
-                let viewportHeight = Telegram.WebApp.viewportHeight;
-                let viewportStableHeight = Telegram.WebApp.viewportStableHeight;
-                let headerColor = Telegram.WebApp.headerColor;
-                let backgroundColor = Telegram.WebApp.backgroundColor;
-                let authDate = Telegram.WebApp.authDate;
-                let hash = Telegram.WebApp.hash;
-
-                // Собираем все данные в объект
-                let fullData = {
-                    initData,
-                    user,
-                    platform,
-                    version,
-                    isExpanded,
-                    themeParams,
-                    colorScheme,
-                    isIframe,
-                    viewportHeight,
-                    viewportStableHeight,
-                    headerColor,
-                    backgroundColor,
-                    authDate,
-                    hash
-                };
-
-                // Вывод данных на страницу
-                document.getElementById('output').textContent = JSON.stringify(fullData, null, 2);
-            } else {
-                document.getElementById('output').textContent = 'Telegram WebApp API не найдено!';
-            }
-        }
-
-        // Вызов функции при загрузке страницы
-        window.onload = fetchTelegramData;
-    </script>
+    <!-- Подключаем внешний файл с JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
