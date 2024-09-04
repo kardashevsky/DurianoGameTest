@@ -29,9 +29,63 @@
         <h1>Telegram WebApp Data</h1>
         <p>Ниже показаны все данные, собранные через Telegram WebApp API:</p>
         <pre id="output"></pre>
+        <p id="status"></p> <!-- Добавлено для вывода отладочного статуса -->
     </div>
 
-    <!-- Подключаем внешний файл с JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        function fetchTelegramData() {
+            // Отладочная информация на странице
+            document.getElementById('status').textContent = "Проверяем наличие Telegram WebApp API...";
+
+            // Проверка, есть ли Telegram WebApp API
+            if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
+                document.getElementById('status').textContent = "Telegram WebApp API доступен";
+
+                // Сбор данных из Telegram WebApp
+                let initData = Telegram.WebApp.initData;
+                let user = Telegram.WebApp.user;
+                let platform = Telegram.WebApp.platform;
+                let version = Telegram.WebApp.version;
+                let isExpanded = Telegram.WebApp.isExpanded;
+                let themeParams = Telegram.WebApp.themeParams;
+                let colorScheme = Telegram.WebApp.colorScheme;
+                let isIframe = Telegram.WebApp.isIframe;
+                let viewportHeight = Telegram.WebApp.viewportHeight;
+                let viewportStableHeight = Telegram.WebApp.viewportStableHeight;
+                let headerColor = Telegram.WebApp.headerColor;
+                let backgroundColor = Telegram.WebApp.backgroundColor;
+                let authDate = Telegram.WebApp.authDate;
+                let hash = Telegram.WebApp.hash;
+
+                // Собираем все данные в объект
+                let fullData = {
+                    initData,
+                    user,
+                    platform,
+                    version,
+                    isExpanded,
+                    themeParams,
+                    colorScheme,
+                    isIframe,
+                    viewportHeight,
+                    viewportStableHeight,
+                    headerColor,
+                    backgroundColor,
+                    authDate,
+                    hash
+                };
+
+                // Вывод данных на страницу
+                document.getElementById('output').textContent = JSON.stringify(fullData, null, 2);
+            } else {
+                document.getElementById('status').textContent = 'Telegram WebApp API не найдено! Откройте через Telegram WebApp.';
+            }
+        }
+
+        // Вызов функции при загрузке страницы с задержкой
+        window.onload = function() {
+            setTimeout(fetchTelegramData, 1000);  // Задержка 1 секунда
+        };
+    </script>  
 </body>
 </html>
