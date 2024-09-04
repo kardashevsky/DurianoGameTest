@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram WebApp initData Test</title>
+    <title>Telegram WebApp Init Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,23 +28,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>Telegram WebApp initData</h1>
-        <p>Зашифрованные данные, переданные через Telegram WebApp API:</p>
+        <h1>Telegram WebApp Init Data</h1>
+        <p>Ниже показаны данные, переданные через Telegram WebApp API:</p>
         <pre id="output"></pre>
-        <p id="status"></p> <!-- Для отладки -->
+        <p id="status"></p>
     </div>
 
     <script>
         function fetchTelegramInitData() {
-            // Проверяем доступность Telegram WebApp API
+            // Проверяем, доступен ли Telegram WebApp API
             if (typeof Telegram !== 'undefined' && Telegram.WebApp) {
                 document.getElementById('status').textContent = "Telegram WebApp API доступен";
 
-                // Получаем зашифрованную строку initData
-                let initData = Telegram.WebApp.initData;
-
-                // Выводим initData на страницу
-                document.getElementById('output').textContent = initData;
+                // Получаем данные из initDataUnsafe
+                const initDataUnsafe = Telegram.WebApp.initDataUnsafe;
+                
+                // Выводим данные initDataUnsafe на страницу
+                document.getElementById('output').textContent = JSON.stringify(initDataUnsafe, null, 2);
             } else {
                 document.getElementById('status').textContent = 'Telegram WebApp API не найдено!';
             }
